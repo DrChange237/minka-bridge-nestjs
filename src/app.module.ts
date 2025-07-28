@@ -8,6 +8,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DebitService } from './service/debit.service';
 import { CreditController } from './controllers/credit.controller';
 import { CreditService } from './service/credit.service';
+import { ConfigModule } from '@nestjs/config';
+import { ConfigImplService } from './service/config.service';
+
 
 
 @Module({
@@ -22,8 +25,12 @@ import { CreditService } from './service/credit.service';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true, // à désactiver en production
     }),
+    ConfigModule.forRoot({
+      isGlobal: true, // rend le module accessible partout sans avoir à le réimporter
+      envFilePath: '.env', // par défaut c’est .env, donc optionnel
+    }),
   ],
   controllers: [AppController, DebitController,CreditController,IntentController],
-  providers: [AppService, DebitService, CreditService, IntentService],
+  providers: [AppService, DebitService, CreditService, IntentService, ConfigImplService],
 })
 export class AppModule {}

@@ -1,5 +1,6 @@
 import { cleanEnv, host, num, port, str } from 'envalid';
 
+
 export const config = cleanEnv(process.env, {
   BRIDGE_PUBLIC_KEY: str({ desc: 'Bridge public key' }),
   BRIDGE_SECRET_KEY: str({ desc: 'Bridge private key' }),

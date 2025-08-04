@@ -15,9 +15,9 @@ export class CreditController {
   async credit(@Req() request: Request): Promise<any> {
     console.log(
       "Request:",
-      request.body
+      request.body.data
     );
-    return await this.creditService.prepare(request.body);
+    return await this.creditService.prepare(request.body.data);
   }
 
    @Post('/:handle/abort')

@@ -61,7 +61,7 @@ async function bootstrap() {
       port: configService.get<number>('PORT'),
       routePrefix: 'v2',
     };
-    await server.start(options);
+    //await server.start(options);
   };
 
   const bootstrapProcessor = async (handle: string) => {
@@ -75,7 +75,7 @@ async function bootstrap() {
     const options: ProcessorOptions = {
       handle,
     };
-    await processor.start(options);
+    //await processor.start(options);
   };
 
   const processors = ['proc-0'];
@@ -84,10 +84,13 @@ async function bootstrap() {
   //await sleep(2000);
 
   for (const handle of processors) {
-    await bootstrapProcessor(handle);
+    //await bootstrapProcessor(handle);
   }
 
-  //await app.listen(configService.get<number>('PORT') ?? 3001);
+  await app.listen(configService.get<number>('PORT') ?? 3001);
+  
+  //await app.listen(3002);
+
 }
 
 bootstrap();
